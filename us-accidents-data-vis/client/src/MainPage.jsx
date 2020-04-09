@@ -22,7 +22,7 @@ import {
 
 const useStyles = makeStyles(theme => ({
     root: {
-        flexGrow: 4
+        flexGrow: 1
     },
     menuButton: {
         marginRight: theme.spacing(2)
@@ -55,7 +55,7 @@ export default function ButtonAppBar() {
             </AppBar>
             <CssBaseline />
             <Router>
-                <Container maxWidth="sm" align="center">
+                <Container align="center">
                     <Switch>
                         <Route exact path="/USDashboard" component={USDashboard}>
                             {/*<Step1 />*/}
