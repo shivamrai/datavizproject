@@ -58,7 +58,7 @@ export default function ButtonAppBar() {
                 <Container align="center">
                     <Switch>
                         <Route exact path="/USDashboard" component={USDashboard}>
-                            {/*<Step1 />*/}
+                            <USDashboard />
                         </Route>
                         <Route path="/CaliforniaDashboard" component={CaliforniaDashboard}>
                             {/*<Step2 />*/}
