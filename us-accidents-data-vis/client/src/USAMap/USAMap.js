@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import USAMap from "./react-usa-map";
 import data from "./data/states";
 import stateCountData from "./data/state_count";
- 
+  
 class Usa extends Component {
   /* mandatory */
   mapHandler = (event) => {
