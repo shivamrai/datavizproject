@@ -21,7 +21,7 @@ export default function CaliforniaDashboard() {
     <div className={classes.root}>
       <Grid container spacing={3}>
         <Grid item xs>
-          <Paper className={classes.paper}><Usa/></Paper>
+          <Paper className={classes.paper}></Paper>
         </Grid>
       </Grid>
       <Grid container spacing={3}>

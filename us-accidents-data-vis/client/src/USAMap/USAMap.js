@@ -10,7 +10,7 @@ class Usa extends Component {
   render() {
     return (
       <div className="App">
-        <USAMap onClick={this.mapHandler} title = {"Test"} state = {"CA"} customize = {{
+        <USAMap onClick={this.mapHandler} width = {600} height = {300} title = {"Test"} state = {"CA"} customize = {{
       "NJ": {
         fill: "navy"
         // clickHandler: (event) => console.log('Custom handler for NJ', event.target.dataset)
