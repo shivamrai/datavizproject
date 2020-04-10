@@ -2,6 +2,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
+import Usa from '../USAMap/USAMap';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -14,14 +15,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function USDashboard() {
+export default function CaliforniaDashboard() {
   const classes = useStyles();
-
   return (
     <div className={classes.root}>
       <Grid container spacing={3}>
         <Grid item xs>
-          <Paper className={classes.paper}>Californa Map here</Paper>
+          <Paper className={classes.paper}><Usa/></Paper>
         </Grid>
       </Grid>
       <Grid container spacing={3}>
