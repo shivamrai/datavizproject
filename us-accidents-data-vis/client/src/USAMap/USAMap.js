@@ -10,7 +10,6 @@ class Usa extends Component {
   render() {
     return (
       <div className="App">
-          <p>Tetsing</p>
         <USAMap onClick={this.mapHandler} title = {"Test"} state = {"CA"} customize = {{
       "NJ": {
         fill: "navy"
