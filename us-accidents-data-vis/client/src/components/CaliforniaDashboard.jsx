@@ -14,6 +14,7 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.text.secondary,
   },
 }));
+
 export default function CaliforniaDashboard() {
   const classes = useStyles();
   return (
