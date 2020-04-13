@@ -27,7 +27,8 @@ class USAMap extends React.Component {
   buildPaths = () => {
     let paths = [];
     for (let stateKey in data) {
-      const path = <USAState key={stateKey} stateName={data[stateKey].name} dimensions={data[stateKey]["dimensions"]} state={stateKey} fill={this.fillStateColor(stateKey)} onClickState={this.stateClickHandler(stateKey)} />
+      // const path = <USAState key={stateKey} stateName={data[stateKey].name} dimensions={data[stateKey]["dimensions"]} state={stateKey} fill={this.fillStateColor(stateKey)} onClickState={this.stateClickHandler(stateKey)} />
+      const path = <USAState key={stateKey} stateName={this.props.stateCustomize[stateKey].display} dimensions={data[stateKey]["dimensions"]} state={stateKey} fill={this.fillStateColor(stateKey)} onClickState={this.stateClickHandler(stateKey)} />
       paths.push(path);
     };
     return paths;
@@ -55,7 +56,8 @@ USAMap.propTypes = {
   height: PropTypes.number,
   title: PropTypes.string,
   defaultFill: PropTypes.string,
-  customize: PropTypes.object
+  customize: PropTypes.object,
+  stateCustomize: PropTypes.string,
 };
 
 USAMap.defaultProps = {
@@ -64,7 +66,8 @@ USAMap.defaultProps = {
   height: 593,
   defaultFill: "#D3D3D3",
   title: "Blank US states map",
-  customize: {}
+  customize: {},
+  stateCustomize: {},
 };
 
 export default USAMap;
