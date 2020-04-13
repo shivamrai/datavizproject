@@ -39,7 +39,7 @@ class Usa extends Component {
     return (
       <div className="App">
 
-        <USAMap onClick={this.mapHandler} title = {"USA"} state = {"CA"} stateCustomize = {data} customize ={data}/>  {/*customize={{"state" : {"fill" : "#0F0F0F"}}}*/}
+        <USAMap onClick={this.mapHandler} width = {400} height = {300} title = {"USA"} state = {"CA"} stateCustomize = {data} customize ={data}/>  {/*customize={{"state" : {"fill" : "#0F0F0F"}}}*/}
       </div>
     );
   }
