@@ -5,7 +5,7 @@ import PieHooks from "./PieHooks";
 import "./styles.css";
 
 export default function PieChart() {
-  const generateData = (value, length = 5) =>
+  const generateData = (value, length = 2) =>
     d3.range(length).map((item, index) => ({
       date: index,
       value: value === null || value === undefined ? Math.random() * 100 : value

@@ -22,7 +22,7 @@ function App() {
   return (
     <div className="App">
       <MainPage />
-      <button onClick={() => apiTest()}> API Test </button>
+      {/* <button onClick={() => apiTest()}> API Test </button> */}
       {/* <Usa /> */}
     </div>  
   );
