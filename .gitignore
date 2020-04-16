@@ -2,6 +2,7 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
+us-accidents-data-vis/client/build
 us-accidents-data-vis/client/node_modules
 /.pnp
 .pnp.js
