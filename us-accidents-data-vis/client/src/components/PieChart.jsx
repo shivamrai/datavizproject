@@ -3,8 +3,9 @@ import ReactDOM from "react-dom";
 import * as d3 from "d3";
 import PieHooks from "./PieHooks";
 import "./styles.css";
+import {connect} from 'react-redux';
 
-export default function PieChart() {
+function PieChart({user}) {
   const generateData = (value, length = 2) =>
     d3.range(length).map((item, index) => ({
       date: index,
@@ -26,7 +27,7 @@ export default function PieChart() {
         <button onClick={changeData}>Transform</button>
       </div>
       <div>
-        <span className="label">Hooks</span>
+  <span className="label">{user}</span>
         <PieHooks
           data={data}
           width={200}
@@ -38,3 +39,10 @@ export default function PieChart() {
     </div>
   );
 }
+
+const mapStateToProps = state => ({
+  // isLoggedIn: False//state.userReducer.isLoggedIn,
+  user: state.userReducer.user,
+});
+
+export default connect(mapStateToProps)(PieChart);

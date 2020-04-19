@@ -7,6 +7,7 @@ import WordCloud from './WordCloud';
 import BarChart from './BarChart';
 import PieChart from './PieChart';
 import { Divider } from '@material-ui/core';
+import { connect } from 'react-redux';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -19,7 +20,11 @@ textAlign: 'center',
 color: theme.palette.text.secondary,
 },
 }));
-export default function USDashboard() {
+
+export default connect(null)(USDashboard);
+
+function USDashboard() {
+  const [store, setStore] = React.useState('');
 const classes = useStyles();
 return (
     <div className={classes.root}>
@@ -43,6 +48,8 @@ return (
       </Grid>
     </div>
   );
+
+
 // return (
 // <div className={classes.root}>
 // <br />

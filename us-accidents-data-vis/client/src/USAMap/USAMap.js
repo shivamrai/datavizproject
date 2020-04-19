@@ -1,15 +1,23 @@
+/* eslint no-undef: "off"*/
 import React, { Component } from 'react';
-import USAMap from "./react-usa-map";
+import { useState, useEffect } from "react";
+import Usam from "./Index";
+import Login from "./Test";
 import data from "./data/states";
 import stateCountData from "./data/state_count";
+import { connect } from 'react-redux';
+import {setUser,}
+from '../redux/actions/userActions';
   
-class Usa extends Component {
+
   /* mandatory */
-  mapHandler = (event) => {
+  const mapHandler = (event) => {
+    console.log("Clicked!");
+    // dispatch(setUser(event.target.dataset.name));
     alert(event.target.dataset.name);
   };
 
-  stateInfo(){
+  function stateInfo(){
       let countArr = {};
     for(let state of Object.keys(data)){
         if(state in stateCountData)
@@ -19,7 +27,6 @@ class Usa extends Component {
         data[state].display = data[state].name + " Count: " + "N/A";
         
     }
-    
     // countArr = Object.keys(countArr).sort();
     console.log(countArr);
     let red = 250;
@@ -34,26 +41,24 @@ class Usa extends Component {
 
   
  
-  render() {
-      this.stateInfo();
+  const Usa = ({props, user, dispatch}) => {
+    // dispatch(setUser("Test2"));
+      console.log("USAMap in hooks: " + user);
+      stateInfo();
+
+
     return (
       <div className="App">
 
-        <USAMap onClick={this.mapHandler} width = {400} height = {300} title = {"USA"} state = {"CA"} stateCustomize = {data} customize ={data}/>  {/*customize={{"state" : {"fill" : "#0F0F0F"}}}*/}
+        <Usam onClick={(e) => mapHandler(e)} width = {400} height = {300} title = {"USA"} state = {"CA"} stateCustomize = {data} customize ={data}/>
+      {/* < Login /> */}
       </div>
     );
   }
-}
+
+  const mapStateToProps = state => ({
+    // isLoggedIn: False//state.userReducer.isLoggedIn,
+    user: state.userReducer.user,
+  });
  
-export default Usa;
-
-
-// {{
-//     "NJ": {
-//       fill: "navy"
-//       // clickHandler: (event) => console.log('Custom handler for NJ', event.target.dataset)
-//     },
-//     "NY": {
-//       fill: "rgb(192,192,192)"
-//     }
-//   }}
+export default connect(mapStateToProps)(Usa);
