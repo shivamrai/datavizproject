@@ -4,7 +4,7 @@ import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Usa from '../USAMap/USAMap';
 import WordCloud from './WordCloud';
-import BarChart from './BarChart';
+import BarChart from './Bar';
 import PieChart from './PieChart';
 import { Divider } from '@material-ui/core';
 import { connect } from 'react-redux';
