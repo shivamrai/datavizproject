@@ -43,4 +43,4 @@ export default function Axis (props) {
         className={`${orient} axis`}
     />
   );
-}
+}   
