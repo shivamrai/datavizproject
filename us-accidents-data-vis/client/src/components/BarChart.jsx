@@ -5,6 +5,7 @@ import XYAxis from './axis/xy-axis';
 import Grid from './grid/grid';
 import Bar from './bar/bar';
 import { transition } from 'd3-transition';
+import {connect} from 'react-redux';
 
 const initial_data = [ 
   { name: 'Sun', value: 100 },
@@ -15,7 +16,7 @@ const initial_data = [
   { name: 'Fri', value: 20 },
   ];
 
-export default function BarChart (){
+function BarChart ({user}){
   // let data = [];
   const [state,setState] = React.useState(initial_data);
   
@@ -55,6 +56,7 @@ export default function BarChart (){
 console.log(yScale);
       return(
         <div>
+           <span className="label">{user}</span>
         <button
           onClick={(e) => randomizeData(e)}
         >
@@ -80,3 +82,9 @@ console.log(yScale);
       );
 }
 
+const mapStateToProps = state => ({
+   // isLoggedIn: False//state.userReducer.isLoggedIn,
+   user: state.userReducer.user,
+ });
+ 
+ export default connect(mapStateToProps)(BarChart);
