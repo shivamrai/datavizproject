@@ -2,6 +2,8 @@ from flask import Flask
 from flask_restful import Resource, Api
 from flask_cors import CORS, cross_origin
 
+from data.US_states_pop import US_states_population
+
 import os
 
 app = Flask(__name__, instance_relative_config=True)
@@ -36,6 +38,10 @@ def hello():
     return 'Hello, World!'
 
 # return app
+@app.route('/getUSpopulation',methods = ['GET'])
+@cross_origin(origin='localhost',headers=['Content- Type','Authorization'])
+def getUSstatespopulation():
+    return US_states_population
 
 
 class HelloWorld(Resource):
