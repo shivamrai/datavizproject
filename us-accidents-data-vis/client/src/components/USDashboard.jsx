@@ -9,7 +9,8 @@ import PieChart from './PieChart';
 import { Divider } from '@material-ui/core';
 import { connect } from 'react-redux';
 import ResponsiveLine from './timeseries';
-
+import State1Info from './stateInfo/state1';
+import State2Info from './stateInfo/state2';
 
 const useStyles = makeStyles((theme) => ({
 root: {
@@ -37,7 +38,13 @@ return (
     <div className={classes.root}>
       <Grid container spacing={3}>
         <Grid item xs>
-<Paper className={classes.paper}><Usa /></Paper>
+          <State1Info />
+        </Grid>
+        <Grid item xs>
+          <Paper className={classes.paper}><Usa /></Paper>
+        </Grid>
+        <Grid item xs>
+          <State2Info />
         </Grid>
       </Grid>
       <Grid container spacing={3}>
