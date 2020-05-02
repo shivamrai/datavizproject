@@ -8,6 +8,7 @@ import BarChart from './BarChart';
 import PieChart from './PieChart';
 import { Divider } from '@material-ui/core';
 import { connect } from 'react-redux';
+import ResponsiveLine from './timeseries';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -19,6 +20,12 @@ padding: theme.spacing(2),
 textAlign: 'center',
 color: theme.palette.text.secondary,
 },
+paperHeighted: {
+  padding: theme.spacing(2),
+  textAlign: 'center',
+  color: theme.palette.text.secondary,
+  height: theme.spacing(50),
+  },
 }));
 
 export default connect(null)(USDashboard);
@@ -44,6 +51,13 @@ return (
           <Paper className={classes.paper}>
               <PieChart />
           </Paper>
+        </Grid>
+        <Grid container spacing={3}>
+          <Grid item xs>
+            <Paper className={classes.paperHeighted}>
+              <ResponsiveLine />
+            </Paper>
+          </Grid>
         </Grid>
       </Grid>
     </div>

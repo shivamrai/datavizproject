@@ -17,7 +17,7 @@ export default function Wordcloud() {
     <div>
       <Resizable
         defaultSize={{
-          width: 400,
+          width: 500,
           height: 300,
         }}
         style={resizeStyle}>

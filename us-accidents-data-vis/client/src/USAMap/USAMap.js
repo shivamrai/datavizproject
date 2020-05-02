@@ -21,7 +21,7 @@ from '../redux/actions/userActions';
       let countArr = {};
     for(let state of Object.keys(data)){
         if(state in stateCountData)
-            {data[state].display = data[state].name + " Count: " + stateCountData[state];
+            {data[state].display = data[state].name + "\n Count: " + stateCountData[state] + " \nCode: " + data[state].abbreviation + "\nGender: ";
             countArr[stateCountData[state]] = state;}
         else
         data[state].display = data[state].name + " Count: " + "N/A";
