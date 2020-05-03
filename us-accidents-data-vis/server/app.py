@@ -3,8 +3,12 @@ from flask_restful import Resource, Api
 from flask_cors import CORS, cross_origin
 
 from data.US_states_pop import US_states_population
+# from data import cities_count
 
 import os
+import json
+import pandas as pd
+import numpy as np
 
 app = Flask(__name__, instance_relative_config=True)
 api = Api(app)
@@ -42,6 +46,43 @@ def hello():
 @cross_origin(origin='localhost',headers=['Content- Type','Authorization'])
 def getUSstatespopulation():
     return US_states_population
+
+@app.route('/getUSCitiesCount/<state>',methods = ['GET'])
+@cross_origin(origin='localhost',headers=['Content- Type','Authorization'])
+def getUSCitiesCount(state):
+    
+    f = open('./data/cities_count.json')
+    data = json.load(f)
+
+    # with open("./data/cities_count.json") as test:
+    #     d = test.read()
+
+    # data = json.loads(d)
+
+    if state not in data:
+        return {'success': False}
+
+    data = data[state]
+    
+    cities = {}
+    top10 = []
+    # print(data)
+    for county in data:
+        for city in data[county]:
+            if city not in cities:
+                # print('city: ',city,"  & county: ",county)
+                cities[city] = data[county][city]
+            else:
+                cities[city] += data[county][city]
+        
+    # newA = dict(sorted(cities.iteritems(), key=operator.itemgetter(1), reverse=True)[:10])
+    newA = sorted(cities, key=cities.get, reverse=True)[:10]
+    # print(newA)
+    res = {}
+    for item in newA:
+        res[item] = cities[item]
+
+    return {'cities':cities , 'top 10':res}
 
 
 class HelloWorld(Resource):
