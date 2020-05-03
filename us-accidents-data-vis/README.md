@@ -11,5 +11,5 @@ Data Visualization for US Accidents from 2016 to 2019
 
 ## APIs (GET):
 
--(http://127.0.0.1:5000/getUSCitiesCount/<state>) where <state> is State Abbreviation like "CA" for California.
+-(http://127.0.0.1:5000/getUSCitiesCount/{state}) where {state} is State Abbreviation like "CA" for California.
 - Response: All cities and top 10 cities
