@@ -74,15 +74,24 @@ def getUSCitiesCount(state):
                 cities[city] = data[county][city]
             else:
                 cities[city] += data[county][city]
+                
         
     # newA = dict(sorted(cities.iteritems(), key=operator.itemgetter(1), reverse=True)[:10])
     newA = sorted(cities, key=cities.get, reverse=True)[:10]
     # print(newA)
-    res = {}
+    res = []
+    # { name: 'Thu', value: 200 },
+    # { name: 'Fri', value: 20 },
     for item in newA:
-        res[item] = cities[item]
+        temp = {}
+        # temp = dict(zip(keys, values))
+        temp['name'] = item
+        temp['value'] = cities[item]
+        res.append(temp)
+        # res[item] = cities[item]
+    #listOfCities = list(map(cities[city],cities[]))
 
-    return {'cities':cities , 'top 10':res}
+    return {'cities':cities , 'top10':res}
 
 
 class HelloWorld(Resource):

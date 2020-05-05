@@ -48,7 +48,7 @@ export default function ButtonAppBar() {
                         color="inherit"
                         aria-label="menu"
                     >
-                        <MenuIcon />
+                    <MenuIcon />
                     </IconButton>
                     <Typography variant="h5" className={classes.title}>
                         Road Accidents Data

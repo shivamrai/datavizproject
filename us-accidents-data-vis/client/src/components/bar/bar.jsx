@@ -7,7 +7,7 @@ function barTransition(){
   const node = barRef.current;
   console.log(barRef.current);
   const { yScale, height, data, t } = props;
-
+  console.log(data);
   select(node)
     .selectAll('.bar')
     .data(data)
@@ -27,7 +27,7 @@ function init () {
   // prepare initial data from where transition starts.
   const initialData = data.map(obj => ({
     name: obj.name,
-    value: 0
+    value: obj.value
   }));
 
   // prepare the field

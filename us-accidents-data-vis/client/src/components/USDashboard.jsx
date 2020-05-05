@@ -13,21 +13,31 @@ import State1Info from './stateInfo/state1';
 import State2Info from './stateInfo/state2';
 
 const useStyles = makeStyles((theme) => ({
-root: {
-flexGrow: 6,
-},
-paper: {
-padding: theme.spacing(2),
-textAlign: 'center',
-color: theme.palette.text.secondary,
-},
-paperHeighted: {
-  padding: theme.spacing(2),
-  textAlign: 'center',
-  color: theme.palette.text.secondary,
-  height: theme.spacing(50),
+  root: {
+    flexGrow: 3,
+  },
+  paper: {
+    padding: theme.spacing(2),
+    textAlign: 'center',
+    color: theme.palette.text.secondary,
+  },
+  paperHeighted: {
+    padding: theme.spacing(2),
+    textAlign: 'center',
+    color: theme.palette.text.secondary,
+    height: theme.spacing(50),
+  },
+  paperWidthConstricted: {
+    padding: theme.spacing(1),
+    alignContent: 'left',
+    alignItems: 'left',
+    textAlign: 'center',
+    color: theme.palette.text.secondary,
+    width: theme.spacing(60),
   },
 }));
+
+
 
 export default connect(null)(USDashboard);
 

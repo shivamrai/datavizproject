@@ -6,15 +6,23 @@ import Grid from './grid/grid';
 import Bar from './bar/bar';
 import { transition } from 'd3-transition';
 import {connect} from 'react-redux';
+import axios from 'axios';
 
-const initial_data = [ 
-  { name: 'Sun', value: 100 },
-  { name: 'Mon', value: 50 },
-  { name: 'Tue', value: 500 },
-  { name: 'Wed', value: 300 },
-  { name: 'Thu', value: 200 },
-  { name: 'Fri', value: 20 },
-  ];
+// const initial_data = [ 
+//   { name: 'Sun', value: 100 },
+//   { name: 'Mon', value: 50 },
+//   { name: 'Tue', value: 500 },
+//   { name: 'Wed', value: 300 },
+//   { name: 'Thu', value: 200 },
+//   { name: 'Fri', value: 20 },
+//   { name: 'Sat', value: 50 },
+//   { name: 'Thur', value: 200 },
+//   { name: 'Frid', value: 70 },
+//   { name: 'Satu', value: 40 },
+//   ];
+const initial_data = [{"name":"Los Angeles","value":65851},{"name":"Sacramento","value":25657},{"name":"San Diego","value":21045},{"name":"San Jose","value":17395},{"name":"Oakland","value":11602},{"name":"Riverside","value":10249},{"name":"Long Beach","value":9743},{"name":"Anaheim","value":8480},{"name":"San Francisco","value":8314},{"name":"Corona","value":7620}];
+
+  const default_top = [];
 
 function BarChart ({user}){
   // let data = [];
@@ -29,8 +37,27 @@ function BarChart ({user}){
     console.log(data);
     setState( data );  
   }
+
+  function populateDefaultData (e){
+    e.preventDefault();
+    axios.get('http://0.0.0.0:5000/getUSCitiesCount/CA',{
+      }).then((response) => {
+        setState(response.data.top10);
+      console.log(response.data.top10);
+        const data = state.map(obj =>({
+          name: obj.name,
+          value: obj.value
+        }))
+        console.log(data);
+        setState(data);
+
+        // console.log(response.data);
+        //console.log(data);
+      });
+    //setState(data);
+  }
   const data = state;
-  console.log(data);
+  //console.log(data);
   const parentWidth = 500;
   const margin = {
       top: 10,
@@ -43,9 +70,9 @@ function BarChart ({user}){
 
     const width = parentWidth - margin.left - margin.right;
     const height = parentWidth * 0.5 - margin.top - margin.bottom;
-
+    console.log(initial_data.map(d => d.name))
     const xScale = scaleBand()
-      .domain(data.map(d => d.name))
+      .domain(initial_data.map(d => d.name))
       .range([0, width])
       .padding(0.26);
 
@@ -53,12 +80,11 @@ function BarChart ({user}){
       .domain([0, Math.max(...data.map(d => d.value))])
       .range([height, 0])
       .nice();
-console.log(yScale);
       return(
         <div>
            <span className="label">{user}</span>
         <button
-          onClick={(e) => randomizeData(e)}
+          onClick={(e) => populateDefaultData(e)}
         >
           Randomize data
         </button>
@@ -66,7 +92,6 @@ console.log(yScale);
           <g transform={`translate(${margin.left}, ${margin.top})`}>
             <XYAxis {...{ xScale, yScale, height, ticks, t }} />
             <Grid {...{ xScale, yScale, width, ticks, t }} />
-            console.log(data);
             <Bar
               {...{
                 xScale,
