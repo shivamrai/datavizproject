@@ -68,7 +68,7 @@ return (
           <Paper className={classes.paper}>
               <PieChart />
           </Paper>
-        </Grid>
+         </Grid>
         <Grid container spacing={3}>
           <Grid item xs>
             <Paper className={classes.paperHeighted}>
@@ -80,3 +80,4 @@ return (
     </div>
   );
 }
+

@@ -29,10 +29,10 @@ export default function Axis (props) {
   const { orient, transform } = props;
   useEffect(()=>{
     if(axisRef.current){
-      updateAxis(axisRef, props);
+      renderAxis(axisRef, props);
     }
     else{
-      renderAxis(axisRef, props);
+      updateAxis(axisRef, props);
       axisRef.current=true;
     }
   })

@@ -50,9 +50,6 @@ function BarChart ({user}){
         }))
         console.log(data);
         setState(data);
-
-        // console.log(response.data);
-        //console.log(data);
       });
     //setState(data);
   }
@@ -91,6 +88,7 @@ function BarChart ({user}){
         <svg width={width + margin.left + margin.right} height={height + margin.top + margin.bottom}>
           <g transform={`translate(${margin.left}, ${margin.top})`}>
             <XYAxis {...{ xScale, yScale, height, ticks, t }} />
+            console.log(xScale);
             <Grid {...{ xScale, yScale, width, ticks, t }} />
             <Bar
               {...{
