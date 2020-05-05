@@ -94,6 +94,25 @@ def getUSCitiesCount(state):
     return {'cities':cities , 'top10':res}
 
 
+@app.route('/wordCloudData/<state>',methods = ['GET'])
+@cross_origin(origin='localhost',headers=['Content- Type','Authorization'])
+def getWordCloudData(state):
+    
+    if state == "USA":
+        f = open('./data/Weather_Condition.json')
+        data = json.load(f)
+        res = []
+
+        for k,v in data.items():
+            temp = {}
+            temp['text'] = k
+            temp['value'] = v
+            res.append(temp)
+        return {'result' : res}
+
+
+    return state
+
 class HelloWorld(Resource):
     def get(self):
         return {'hello': 'world'}
