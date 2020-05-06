@@ -7,6 +7,7 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
+import {connect} from 'react-redux';
 
 const useStyles = makeStyles({
   table: {
@@ -26,11 +27,13 @@ const rows = [
   createData("Gingerbread", 356),
 ];
 
-export default function State2() {
+function State2({ user }) {
   const classes = useStyles();
 
   return (
+    
     <TableContainer component={Paper}>
+      <span className="label">{user}</span>
       <Table className={classes.table} aria-label="simple table">
         <TableHead>
           <TableRow>
@@ -52,3 +55,10 @@ export default function State2() {
     </TableContainer>
   );
 }
+
+
+const mapStateToProps = state => ({
+  user: state.userReducer.user,
+});
+
+export default connect(mapStateToProps)(State2);

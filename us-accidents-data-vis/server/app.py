@@ -1,14 +1,16 @@
 from flask import Flask
 from flask_restful import Resource, Api
 from flask_cors import CORS, cross_origin
+from flask import request
 
 from data.US_states_pop import US_states_population
 # from data import cities_count
 
 import os
 import json
-import pandas as pd
-import numpy as np
+import ast
+# import pandas as pd
+# import numpy as np
 
 app = Flask(__name__, instance_relative_config=True)
 api = Api(app)
@@ -94,16 +96,47 @@ def getUSCitiesCount(state):
     return {'cities':cities , 'top10':res}
 
 
-@app.route('/wordCloudData/<state>',methods = ['GET'])
+@app.route('/wordCloudData/<state>',methods = ['GET','POST'])
 @cross_origin(origin='localhost',headers=['Content- Type','Authorization'])
 def getWordCloudData(state):
     
     if state == "USA":
         f = open('./data/Weather_Condition.json')
-        data = json.load(f)
+        weather_data = json.load(f)
         res = []
 
-        for k,v in data.items():
+        for k,v in weather_data.items():
+            temp = {}
+            temp['text'] = k
+            temp['value'] = v
+            res.append(temp)
+        return {'result' : res}
+    
+    f = open('./data/US_States_All_Causes.json')
+    weather_data = json.load(f)
+    if state in weather_data:
+        res = weather_data[state]
+        return {'result' : res}
+    
+    return {'result' : False}
+
+
+@app.route('/timeSeriesData/<state>',methods = ['GET','POST'])
+@cross_origin(origin='localhost',headers=['Content- Type','Authorization'])
+def getTimeSeriesData(state):
+    
+    data = {}
+    if request.method == 'POST':
+        data = request.data
+        data = ast.literal_eval(data.decode("UTF-8"))
+        data = data["data"]
+
+    if state == "USA":
+        f = open('./data/Weather_Condition.json')
+        weather_data = json.load(f)
+        res = []
+        print(data)
+        for k,v in weather_data.items():
             temp = {}
             temp['text'] = k
             temp['value'] = v
@@ -112,6 +145,7 @@ def getWordCloudData(state):
 
 
     return state
+
 
 class HelloWorld(Resource):
     def get(self):

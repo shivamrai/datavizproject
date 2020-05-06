@@ -1,12 +1,24 @@
 import { ResponsiveLine } from '@nivo/line'
 import React from 'react';
 import data from './lineData'
+import Axios from 'axios';
+import {connect} from 'react-redux';
 // make sure parent container have a defined height when using
 // responsive component, otherwise height will be 0 and
 // no chart will be rendered.
 // website examples showcase many properties,
 // you'll often use just a few of them.
-const MyResponsiveLine = () => (
+const MyResponsiveLine = ({user}) => {
+
+    if(user){
+
+        Axios.post(`http://127.0.0.1:5000/wordCloudData/USA`,{"data":data
+        }).then((response) => {
+          console.log(response.data);
+        });
+    }
+
+    return(
     <ResponsiveLine
         data={data}
         margin={{ top: 50, right: 110, bottom: 50, left: 60 }}
@@ -19,7 +31,7 @@ const MyResponsiveLine = () => (
             tickSize: 5,
             tickPadding: 5,
             tickRotation: 0,
-            legend: 'transportation',
+            legend: 'CAUSES FOR ' + user,
             legendOffset: 36,
             legendPosition: 'middle'
         }}
@@ -68,4 +80,12 @@ const MyResponsiveLine = () => (
         ]}
     />
 )
-export default MyResponsiveLine;
+    }
+const mapStateToProps = state => ({
+    // isLoggedIn: False//state.userReducer.isLoggedIn,
+    user: state.userReducer.user,
+  });
+  
+  export default connect(mapStateToProps)(MyResponsiveLine);
+
+// export default MyResponsiveLine;
