@@ -55,7 +55,7 @@ function BarChart ({user}){
   }
   const data = state;
   //console.log(data);
-  const parentWidth = 500;
+  const parentWidth = 700;
   const margin = {
       top: 10,
       right: 10,
@@ -80,11 +80,11 @@ function BarChart ({user}){
       return(
         <div>
            <span className="label">{user}</span>
-        <button
+        {/* <button
           onClick={(e) => populateDefaultData(e)}
         >
           Randomize data
-        </button>
+        </button> */}
         <svg width={width + margin.left + margin.right} height={height + margin.top + margin.bottom}>
           <g transform={`translate(${margin.left}, ${margin.top})`}>
             <XYAxis {...{ xScale, yScale, height, ticks, t }} />

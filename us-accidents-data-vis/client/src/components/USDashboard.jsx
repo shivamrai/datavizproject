@@ -26,6 +26,7 @@ const useStyles = makeStyles((theme) => ({
     textAlign: 'center',
     color: theme.palette.text.secondary,
     height: theme.spacing(50),
+    width: theme.spacing(120),
   },
   paperWidthConstricted: {
     padding: theme.spacing(1),
@@ -34,6 +35,28 @@ const useStyles = makeStyles((theme) => ({
     textAlign: 'center',
     color: theme.palette.text.secondary,
     width: theme.spacing(60),
+  },
+  paperWidthLow: {
+    padding: theme.spacing(1),
+    textAlign: 'center',
+    color: theme.palette.text.secondary,
+    width: theme.spacing(30),
+  },
+  paperWordCloud: {
+    padding: theme.spacing(1),
+    alignContent: 'left',
+    alignItems: 'left',
+    textAlign: 'center',
+    color: theme.palette.text.secondary,
+    width: theme.spacing(50),
+  },
+  paperBarChart: {
+    padding: theme.spacing(1),
+    alignContent: 'left',
+    alignItems: 'left',
+    textAlign: 'center',
+    color: theme.palette.text.secondary,
+    width: theme.spacing(100),
   },
 }));
 
@@ -57,24 +80,24 @@ return (
           <State2Info />
         </Grid>
       </Grid>
-      <Grid container spacing={3}>
+      <Grid container spacing={2}>
         <Grid item xs>
-          <Paper className={classes.paper}><WordCloud /></Paper>
+          <Paper className={classes.paperBarChart}><BarChart data={[5,10,11,23,12,13,20,11]} size={[700,600]} /></Paper>
         </Grid>
         <Grid item xs>
-          <Paper className={classes.paper}><BarChart data={[5,10,11,23,12,13,20,11]} size={[500,500]} /></Paper>
+          <Paper className={classes.paperWordCloud}><WordCloud /></Paper>
         </Grid>
-        <Grid item xs>
-          <Paper className={classes.paper}>
-              <PieChart />
-          </Paper>
-         </Grid>
         <Grid container spacing={3}>
           <Grid item xs>
             <Paper className={classes.paperHeighted}>
               <ResponsiveLine />
             </Paper>
           </Grid>
+          <Grid item xs>
+          <Paper className={classes.paperWidthLow}>
+              <PieChart />
+          </Paper>
+         </Grid>
         </Grid>
       </Grid>
     </div>
