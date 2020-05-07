@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { useState, useEffect } from "react";
 import { render } from 'react-dom';
 import { scaleBand, scaleLinear } from 'd3-scale';
 import XYAxis from './axis/xy-axis';
@@ -27,7 +28,28 @@ const initial_data = [{"name":"Los Angeles","value":65851},{"name":"Sacramento",
 function BarChart ({user}){
   // let data = [];
   const [state,setState] = React.useState(initial_data);
-  
+  const [localUser, setLocalUser] = useState("");
+
+  if(localUser !== user){
+    console.log(user);
+    axios.get(`http://localhost:5000/getUSCitiesCount/${user}`,{
+    }).then((response) => {
+      if(user!='USA'){
+      setState(response.data.top10);
+    console.log(response.data.top10);
+      const data = state.map(obj =>({
+        name: obj.name,
+        value: obj.value
+      }))
+      console.log(data);
+      // setState(data);
+      setLocalUser(user);
+    }
+    });
+
+}
+
+
   function randomizeData (e){
     e.preventDefault();
     const data = state.map(obj => ({
@@ -67,9 +89,9 @@ function BarChart ({user}){
 
     const width = parentWidth - margin.left - margin.right;
     const height = parentWidth * 0.5 - margin.top - margin.bottom;
-    console.log(initial_data.map(d => d.name))
+    console.log(state.map(d => d.name))
     const xScale = scaleBand()
-      .domain(initial_data.map(d => d.name))
+      .domain(state.map(d => d.name))
       .range([0, width])
       .padding(0.26);
 

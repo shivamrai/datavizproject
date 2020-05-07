@@ -18,6 +18,11 @@ function renderAxis(ref, props){
 }
 function updateAxis(ref, props) {
   const { scale, orient, ticks, t } = props;
+  if (orient === "bottom") {
+    console.log(scale);
+    const axis = axisBottom(scale);
+    selectAll(`.${orient}`).call(axis)
+  }
 
     if (orient === "left") {
       const axis = axisLeft(scale).ticks(ticks); 
@@ -29,10 +34,10 @@ export default function Axis (props) {
   const { orient, transform } = props;
   useEffect(()=>{
     if(axisRef.current){
-      renderAxis(axisRef, props);
+      updateAxis(axisRef, props);
     }
     else{
-      updateAxis(axisRef, props);
+      renderAxis(axisRef, props);
       axisRef.current=true;
     }
   })

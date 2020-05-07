@@ -1,5 +1,5 @@
 import { ResponsiveLine } from '@nivo/line'
-import React from 'react';
+import React, { useState, useEffect } from "react";
 import data from './lineData'
 import Axios from 'axios';
 import {connect} from 'react-redux';
@@ -10,11 +10,14 @@ import {connect} from 'react-redux';
 // you'll often use just a few of them.
 const MyResponsiveLine = ({user}) => {
 
-    if(user){
+    const [localUser, setLocalUser] = useState("");
+
+    if(localUser !== user){
 
         Axios.post(`http://127.0.0.1:5000/wordCloudData/USA`,{"data":data
         }).then((response) => {
           console.log(response.data);
+          setLocalUser(user);   
         });
     }
 
