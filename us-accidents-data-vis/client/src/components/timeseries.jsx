@@ -1,6 +1,6 @@
 import { ResponsiveLine } from '@nivo/line'
 import React, { useState, useEffect } from "react";
-import data from './lineData'
+import timeSeriesData from './lineData'
 import Axios from 'axios';
 import {connect} from 'react-redux';
 // make sure parent container have a defined height when using
@@ -11,12 +11,14 @@ import {connect} from 'react-redux';
 const MyResponsiveLine = ({user}) => {
 
     const [localUser, setLocalUser] = useState("");
+    const [data, setData] = useState(timeSeriesData);
 
     if(localUser !== user){
 
-        Axios.post(`http://127.0.0.1:5000/wordCloudData/USA`,{"data":data
+        Axios.get(`http://127.0.0.1:5000/timeSeriesData/${user}`,{
         }).then((response) => {
-          console.log(response.data);
+          console.log(response.data.result);
+          setData(response.data.result);
           setLocalUser(user);   
         });
     }

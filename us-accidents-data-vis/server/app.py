@@ -56,42 +56,26 @@ def getUSCitiesCount(state):
     f = open('./data/cities_count.json')
     data = json.load(f)
 
-    # with open("./data/cities_count.json") as test:
-    #     d = test.read()
-
-    # data = json.loads(d)
-
     if state not in data:
         return {'success': False}
 
     data = data[state]
     
     cities = {}
-    top10 = []
-    # print(data)
     for county in data:
         for city in data[county]:
             if city not in cities:
-                # print('city: ',city,"  & county: ",county)
                 cities[city] = data[county][city]
             else:
                 cities[city] += data[county][city]
                 
-        
-    # newA = dict(sorted(cities.iteritems(), key=operator.itemgetter(1), reverse=True)[:10])
     newA = sorted(cities, key=cities.get, reverse=True)[:10]
-    # print(newA)
     res = []
-    # { name: 'Thu', value: 200 },
-    # { name: 'Fri', value: 20 },
     for item in newA:
         temp = {}
-        # temp = dict(zip(keys, values))
         temp['name'] = item
         temp['value'] = cities[item]
         res.append(temp)
-        # res[item] = cities[item]
-    #listOfCities = list(map(cities[city],cities[]))
 
     return {'cities':cities , 'top10':res}
 
@@ -131,20 +115,13 @@ def getTimeSeriesData(state):
         data = ast.literal_eval(data.decode("UTF-8"))
         data = data["data"]
 
+    f = open('./data/timeseries2.json')
+    timeseries_data = json.load(f)
+
     if state == "USA":
-        f = open('./data/Weather_Condition.json')
-        weather_data = json.load(f)
-        res = []
-        print(data)
-        for k,v in weather_data.items():
-            temp = {}
-            temp['text'] = k
-            temp['value'] = v
-            res.append(temp)
-        return {'result' : res}
+        return {"result" : timeseries_data["CA"]}
 
-
-    return state
+    return {"result" : timeseries_data[state]}
 
 
 class HelloWorld(Resource):
