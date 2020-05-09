@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
@@ -9,9 +9,10 @@ import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import Grid from '@material-ui/core/Grid';
 import Select from 'react-select';
+import axios from "axios";
 
 const Countries = [
-  { label: "Albania", value: 355 },
+  { label: "California", value: "CA" },
   { label: "Argentina", value: 54 },
   { label: "Austria", value: 43 },
   { label: "Cocos Islands", value: 61 },
@@ -27,6 +28,23 @@ const useStyles = makeStyles({
   }
 });
 
+function onDropDownChange(e){
+  
+}
+// function loadData(){
+//   axios.get(`http://localhost:5000/getUSCitiesCount/${user}`,{
+//     }).then((response) => {
+//       if(user!='USA'){
+//         setData(response.data.top10);
+//     console.log(response.data.top10);
+//       const data = state.map(obj =>({
+//         name: obj.name,
+//         value: obj.value
+//       }))
+//     }
+//   })
+// }
+
 function createData(name, value) {
   return { name, value};
 }
@@ -41,7 +59,12 @@ const rows = [
 
 export default function State1() {
   const classes = useStyles();
+  const [data,setData] = React.useState(rows);
+
 console.log(rows);
+  useEffect(() => {
+    setData(rows);
+  }, [data])
   return (
     <Grid container spacing = {1} >
       <Grid item xs>
