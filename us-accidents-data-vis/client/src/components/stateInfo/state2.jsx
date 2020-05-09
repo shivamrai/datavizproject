@@ -15,16 +15,16 @@ const useStyles = makeStyles({
   }
 });
 
-function createData(name, calories) {
-  return { name, calories};
+function createData(name, value) {
+  return { name, value};
 }
 
 const rows = [
-  createData("Frozen yoghurt", 159),
-  createData("Ice cream sandwich", 237),
-  createData("Eclair", 262),
-  createData("Cupcake", 305),
-  createData("Gingerbread", 356),
+  createData("Name", "California"),
+  createData("Code", "CA"),
+  createData("Rank", 1),
+  createData("Number of Accidents", 663204),
+  createData("Severe accidents", "22%"),
 ];
 
 function State2({ user }) {
@@ -37,8 +37,8 @@ function State2({ user }) {
       <Table className={classes.table} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell>Dessert (100g serving)</TableCell>
-            <TableCell align="right">Calories&nbsp;</TableCell>
+          <TableCell>Attribute</TableCell>
+          <TableCell align="right">Value&nbsp;</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -47,7 +47,7 @@ function State2({ user }) {
               <TableCell component="th" scope="row">
                 {row.name}
               </TableCell>
-              <TableCell align="right">{row.calories}</TableCell>
+              <TableCell align="right">{row.value}</TableCell>
             </TableRow>
           ))}
         </TableBody>

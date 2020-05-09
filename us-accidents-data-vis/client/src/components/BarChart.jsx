@@ -102,15 +102,9 @@ function BarChart ({user}){
       return(
         <div>
            <span className="label">{user}</span>
-        {/* <button
-          onClick={(e) => populateDefaultData(e)}
-        >
-          Randomize data
-        </button> */}
         <svg width={width + margin.left + margin.right} height={height + margin.top + margin.bottom}>
           <g transform={`translate(${margin.left}, ${margin.top})`}>
             <XYAxis {...{ xScale, yScale, height, ticks, t }} />
-            console.log(xScale);
             <Grid {...{ xScale, yScale, width, ticks, t }} />
             <Bar
               {...{
