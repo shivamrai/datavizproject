@@ -22,16 +22,14 @@ import {
 
 const useStyles = makeStyles(theme => ({
     root: {
-        flexGrow: 1
-    },
-    menuButton: {
-        marginRight: theme.spacing(2)
+        flexGrow: 1,
+        height: theme.spacing(7)
     },
     title: {
         flexGrow: 1
     },
     toolbar: {
-        height: theme.spacing(2)
+        height: theme.spacing(1)
     }
 }));
 
@@ -40,16 +38,8 @@ export default function ButtonAppBar() {
 
     return (
         <div className={classes.root}>
-            <AppBar position="static">
+            <AppBar position="static" className={classes.root}> 
                 <Toolbar className={classes.toolbar}>
-                    <IconButton
-                        edge="start"
-                        className={classes.menuButton}
-                        color="inherit"
-                        aria-label="menu"
-                    >
-                    <MenuIcon />
-                    </IconButton>
                     <Typography variant="h5" className={classes.title}>
                         Road Accidents Data
                     </Typography>
@@ -62,9 +52,6 @@ export default function ButtonAppBar() {
                     <Switch>
                         <Route exact path="/USDashboard" component={USDashboard}>
                             <USDashboard />
-                        </Route>
-                        <Route path="/CaliforniaDashboard" component={CaliforniaDashboard}>
-                            {/*<Step2 />*/}
                         </Route>
                     </Switch>
                 </Container>

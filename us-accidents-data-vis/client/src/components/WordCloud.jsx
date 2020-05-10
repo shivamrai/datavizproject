@@ -32,11 +32,10 @@ function Wordcloud({ user }) {
 
   return (
     <div>
-      <span className="label">{user}</span>
       <Resizable
         defaultSize={{
           width: 380,
-          height: 315,
+          height: 415,
         }}
         style={resizeStyle}>
         <div style={{ width: '100%', height: '100%' }}>

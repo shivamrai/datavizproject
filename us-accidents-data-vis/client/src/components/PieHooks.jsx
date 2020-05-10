@@ -36,9 +36,9 @@ const Pie = props => {
       path
         .attr("class", "arc")
         .attr("d", createArc)
+        .transition().duration(1000)
         .attr("fill", (d, i) => colors(i));
 
-      const t = transition().duration(1000);
 
       const text = groupWithUpdate
         .append("text")

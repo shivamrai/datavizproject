@@ -6,7 +6,7 @@ import Usa from '../USAMap/USAMap';
 import WordCloud from './WordCloud';
 import BarChart from './BarChart';
 import PieChart from './PieChart';
-import { Divider } from '@material-ui/core';
+import { Divider, Typography } from '@material-ui/core';
 import { connect } from 'react-redux';
 import ResponsiveLine from './timeseries';
 import State1Info from './stateInfo/state1';
@@ -74,7 +74,7 @@ return (
           <State1Info />
         </Grid>
         <Grid item xs>
-          <Paper className={classes.paper}><Usa /></Paper>
+          <Paper className={classes.paper}><div><br /></div><div><Usa /></div><div><Typography>Currently selected state: </Typography></div></Paper>
         </Grid>
         <Grid item xs>
           <State2Info />
