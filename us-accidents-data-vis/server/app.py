@@ -115,13 +115,25 @@ def getTimeSeriesData(state):
         data = ast.literal_eval(data.decode("UTF-8"))
         data = data["data"]
 
-    f = open('./data/timeseries2.json')
+    f = open('./data/timeseries3.json')
     timeseries_data = json.load(f)
 
     if state == "USA":
         return {"result" : timeseries_data["CA"]}
 
     return {"result" : timeseries_data[state]}
+
+@app.route('/stateStats/<state>',methods = ['GET','POST'])
+@cross_origin(origin='localhost',headers=['Content- Type','Authorization'])
+def getStateStats(state):
+    f = open('./data/state_stats.json')
+    stats_data = json.load(f)
+
+    if state == "USA":
+        return {"result" : stats_data["CA"]}
+
+    return {"result" : stats_data[state]}
+
 
 
 class HelloWorld(Resource):

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
@@ -8,6 +8,7 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import {connect} from 'react-redux';
+import axios from 'axios';
 
 const useStyles = makeStyles({
   table: {
@@ -30,6 +31,20 @@ const rows = [
 function State2({ user }) {
   const classes = useStyles();
 
+  const [data, setData] = useState(rows);
+  const [localUser, setLocalUser] = useState("");
+
+  if(localUser !== user){
+
+    axios.post(`http://127.0.0.1:5000/stateStats/${user}`,{
+    }).then((response) => {
+      console.log(rows);
+      console.log(response.data.result);
+      setData(response.data.result);
+      setLocalUser(user);
+    });
+}
+
   return (
     
     <TableContainer component={Paper}>
@@ -42,7 +57,7 @@ function State2({ user }) {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map(row => (
+          {data.map(row => (
             <TableRow key={row.name}>
               <TableCell component="th" scope="row">
                 {row.name}

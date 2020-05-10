@@ -17,6 +17,7 @@ const MyResponsiveLine = ({user}) => {
 
         Axios.get(`http://127.0.0.1:5000/timeSeriesData/${user}`,{
         }).then((response) => {
+          console.log(timeSeriesData);
           console.log(response.data.result);
           setData(response.data.result);
           setLocalUser(user);   

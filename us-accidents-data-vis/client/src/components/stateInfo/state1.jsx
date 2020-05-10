@@ -10,16 +10,17 @@ import Paper from "@material-ui/core/Paper";
 import Grid from '@material-ui/core/Grid';
 import Select from 'react-select';
 import axios from "axios";
+import Countries from "./dropDownData"
 
-const Countries = [
-  { label: "California", value: "CA" },
-  { label: "Argentina", value: 54 },
-  { label: "Austria", value: 43 },
-  { label: "Cocos Islands", value: 61 },
-  { label: "Kuwait", value: 965 },
-  { label: "Sweden", value: 46 },
-  { label: "Venezuela", value: 58 }
-];
+// const Countries = [
+//   { label: "California", value: "CA" },
+//   { label: "Argentina", value: 54 },
+//   { label: "Austria", value: 43 },
+//   { label: "Cocos Islands", value: 61 },
+//   { label: "Kuwait", value: 965 },
+//   { label: "Sweden", value: 46 },
+//   { label: "Venezuela", value: 58 }
+// ];
 
 
 const useStyles = makeStyles({
@@ -27,23 +28,6 @@ const useStyles = makeStyles({
     minWidth: 300
   }
 });
-
-function onDropDownChange(e){
-  
-}
-// function loadData(){
-//   axios.get(`http://localhost:5000/getUSCitiesCount/${user}`,{
-//     }).then((response) => {
-//       if(user!='USA'){
-//         setData(response.data.top10);
-//     console.log(response.data.top10);
-//       const data = state.map(obj =>({
-//         name: obj.name,
-//         value: obj.value
-//       }))
-//     }
-//   })
-// }
 
 function createData(name, value) {
   return { name, value};
@@ -54,23 +38,31 @@ const rows = [
   createData("Code", "CA"),
   createData("Rank", 1),
   createData("Number of Accidents", 663204),
-  createData("Severe accidents", "22%"),
+  createData("Severe accidents", "32.81 %"),
 ];
 
 export default function State1() {
   const classes = useStyles();
   const [data,setData] = React.useState(rows);
 
+  function onDropDownChange(e){
+    console.log(e);
+    
+    axios.post(`http://127.0.0.1:5000/stateStats/${e.value}`,{
+      }).then((response) => {
+        setData(response.data.result);
+      });
+  
+  }
+
 console.log(rows);
-  useEffect(() => {
-    setData(rows);
-  }, [data])
+  
   return (
     <Grid container spacing = {1} >
       <Grid item xs>
         <br />
         <div className="col-md-6">
-          <Select options={Countries} />
+          <Select options={Countries} onChange = {(e) => onDropDownChange(e)}/>
         </div>
       </Grid>
       <Grid item xs>
@@ -83,7 +75,7 @@ console.log(rows);
               </TableRow>
             </TableHead>
             <TableBody>
-              {rows.map(row => (
+              {data.map(row => (
                 <TableRow key={row.name}>
                   <TableCell component="th" scope="row">
                     {row.name}
