@@ -70,7 +70,7 @@ const Usam = (props) => {
         <g className="outlines">
           {buildPaths()}
           <g className="DC state">
-            <path className="DC1" fill={fillStateColor("DC1")} d="M801.8,253.8 l-1.1-1.6 -1-0.8 1.1-1.6 2.2,1.5z" />
+            <path className="DC1" fill={fillStateColor("DC1")} d="M801.8,253.8 l-1.1-1.6 -1-0.8 1.1-1.6 2.2,1.5z"/>
             <circle className="DC2" onClick={clickHandler} data-name={"DC"} fill={fillStateColor("DC2")} stroke="#FFFFFF" strokeWidth="1.5" cx="801.3" cy="251.8" r="5" opacity="1" />
           </g>
         </g>

@@ -2,7 +2,6 @@
 import React, { Component } from 'react';
 import { useState, useEffect } from "react";
 import Usam from "./Index";
-import Login from "./Test";
 import data from "./data/states";
 import stateCountData from "./data/state_count";
 import { connect } from 'react-redux';
