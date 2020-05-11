@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import timeSeriesData from './lineData'
 import Axios from 'axios';
 import {connect} from 'react-redux';
+import stateName from "../data/stateCodes";
 // make sure parent container have a defined height when using
 // responsive component, otherwise height will be 0 and
 // no chart will be rendered.

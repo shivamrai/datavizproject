@@ -9,6 +9,7 @@ import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import {connect} from 'react-redux';
 import axios from 'axios';
+import stateName from "../../data/stateCodes";
 
 const useStyles = makeStyles({
   table: {
@@ -48,7 +49,7 @@ function State2({ user }) {
   return (
     
     <TableContainer component={Paper}>
-      <span className="label">{user}</span>
+      <span className="label">{stateName[user]}</span>
       <Table className={classes.table} aria-label="simple table">
         <TableHead>
           <TableRow>

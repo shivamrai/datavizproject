@@ -11,6 +11,7 @@ import { connect } from 'react-redux';
 import ResponsiveLine from './timeseries';
 import State1Info from './stateInfo/state1';
 import State2Info from './stateInfo/state2';
+import stateName from "../data/stateCodes";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -61,10 +62,14 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
+const mapStateToProps = state => ({
+  user: state.userReducer.user,
+});
 
-export default connect(null)(USDashboard);
 
-function USDashboard() {
+export default connect(mapStateToProps)(USDashboard);
+
+function USDashboard({user}) {
   const [store, setStore] = React.useState('');
 const classes = useStyles();
 return (
@@ -74,7 +79,7 @@ return (
           <State1Info />
         </Grid>
         <Grid item xs>
-          <Paper className={classes.paper}><div><br /></div><div><Usa /></div><div><Typography>Currently selected state: </Typography></div></Paper>
+<Paper className={classes.paper}><div><br /></div><div><Usa /></div><div><Typography>Currently selected state: {stateName[user]}</Typography></div></Paper>
         </Grid>
         <Grid item xs>
           <State2Info />

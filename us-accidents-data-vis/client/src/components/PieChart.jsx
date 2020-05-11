@@ -4,6 +4,7 @@ import * as d3 from "d3";
 import PieHooks from "./PieHooks";
 import "./styles.css";
 import {connect} from 'react-redux';
+import stateName from "../data/stateCodes";
 
 function PieChart({user}) {
   const generateData = (value, length = 2) =>
@@ -27,7 +28,7 @@ function PieChart({user}) {
         <button onClick={changeData}>Transform</button>
       </div>
       <div>
-  <span className="label">{user}</span>
+  <span className="label">{stateName[user]}</span>
         <PieHooks
           data={data}
           width={200}

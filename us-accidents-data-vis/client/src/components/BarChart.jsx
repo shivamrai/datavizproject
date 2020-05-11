@@ -8,6 +8,7 @@ import Bar from './bar/bar';
 import { transition } from 'd3-transition';
 import {connect} from 'react-redux';
 import axios from 'axios';
+import stateName from "../data/stateCodes";
 
 // const initial_data = [ 
 //   { name: 'Sun', value: 100 },
@@ -101,7 +102,7 @@ function BarChart ({user}){
       .nice();
       return(
         <div>
-           <span className="label">{user}</span>
+           <span className="label">{stateName[user]}</span>
         <svg width={width + margin.left + margin.right} height={height + margin.top + margin.bottom}>
           <g transform={`translate(${margin.left}, ${margin.top})`}>
             <XYAxis {...{ xScale, yScale, height, ticks, t }} />
