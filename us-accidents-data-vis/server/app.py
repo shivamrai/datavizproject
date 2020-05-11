@@ -134,6 +134,15 @@ def getStateStats(state):
 
     return {"result" : stats_data[state]}
 
+@app.route('/genderData/<state>',methods = ['GET','POST'])
+@cross_origin(origin='localhost',headers=['Content- Type','Authorization'])
+def getGenderStats(state):
+    f = open('./data/state_gender.json')
+    stats_data = json.load(f)
+    if state in stats_data:
+        return {"result" : stats_data[state]}
+    
+    return {"result" : False}
 
 
 class HelloWorld(Resource):

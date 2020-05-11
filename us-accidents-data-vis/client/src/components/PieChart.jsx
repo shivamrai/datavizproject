@@ -6,28 +6,37 @@ import "./styles.css";
 import {connect} from 'react-redux';
 import stateName from "../data/stateCodes";
 import { Button } from "@material-ui/core";
+import axios from "axios";
 
 function PieChart({user}) {
   const generateData = (value, length = 2) =>
     d3.range(length).map((item, index) => ({
-      gender: index,
+      date: index,
       value: value === null || value === undefined ? Math.random() * 100 : value
     }));
 
   const [data, setData] = useState(generateData(0));
-  const changeData = () => {
-    setData(generateData());
-    console.log(data);  
-  };
+  const [localUser, setLocalUser] = useState("");
 
-  useEffect(() => {
-    setData(generateData());
-  }, [!data]);
+  if(localUser !== user){
+
+    axios.post(`http://127.0.0.1:5000/genderData/${user}`,{
+    }).then((response) => {
+      console.log(response.data.result);
+      console.log(generateData(20));
+      setData(response.data.result);
+      setLocalUser(user);
+    });
+}
+
+  // useEffect(() => {
+  //   setData(generateData());
+  // }, [!data]);
 
   return (
     <div className="App">
       <div>
-        A Pie chart indicating division of drivers in all accidents for state <b>{user}</b>
+        A Pie chart indicating division of drivers in all accidents for state <b>{stateName[user]}</b>
       </div>
       <div>
         <PieHooks
