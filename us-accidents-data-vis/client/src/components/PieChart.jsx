@@ -1,20 +1,14 @@
-import React, { useState, useEffect, state ,setState} from "react";
+import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
 import * as d3 from "d3";
 import PieHooks from "./PieHooks";
 import "./styles.css";
-import Select from '@material-ui/core/Select';
-import { makeStyles, FormControl, InputLabel } from "@material-ui/core";
+import {connect} from 'react-redux';
+import stateName from "../data/stateCodes";
+import { Button } from "@material-ui/core";
+import axios from "axios";
 
-const useStyles = makeStyles((theme) => ({
-  formControl: {
-    margin: theme.spacing(1),
-    minWidth: 120,
-  },
-}));
-
-export default function PieChart() {
-  const classes = useStyles();
+function PieChart({user}) {
   const generateData = (value, length = 2) =>
     d3.range(length).map((item, index) => ({
       date: index,
@@ -22,53 +16,34 @@ export default function PieChart() {
     }));
 
   const [data, setData] = useState(generateData(0));
-  const [state, setState] = React.useState({age: '',});
-  const changeData = () => {
-    setData(generateData());
-  };
+  const [localUser, setLocalUser] = useState("");
 
-  const handleChange = (event) => {
-    const name = event.target.name;
-    setState({
-      ...state,
-      [name]: event.target.value,
+  if(localUser !== user){
+
+    axios.post(`http://127.0.0.1:5000/genderData/${user}`,{
+    }).then((response) => {
+      console.log(response.data.result);
+      console.log(generateData(20));
+      setData(response.data.result);
+      setLocalUser(user);
     });
-  };
+}
 
-  useEffect(() => {
-    setData(generateData());
-  }, [!data]);
+  // useEffect(() => {
+  //   setData(generateData());
+  // }, [!data]);
 
   return (
     <div className="App">
       <div>
-        <button onClick={changeData}>Transform</button>
+        A Pie chart indicating division of drivers in all accidents for state <b>{stateName[user]}</b>
       </div>
+      <div><br /></div>
       <div>
-      <FormControl className={classes.formControl}>
-        <InputLabel htmlFor="age-native-simple">Age</InputLabel>
-        <Select
-          native
-          value={state.age}
-          onChange={handleChange}
-          inputProps={{
-            name: 'age',
-            id: 'age-native-simple',
-          }}
-        >
-          <option aria-label="None" value="" />
-          <option value={10}>Ten</option>
-          <option value={20}>Twenty</option>
-          <option value={30}>Thirty</option>
-        </Select>
-      </FormControl>
-      </div>
-      <div>
-        <span className="label">Hooks</span>  
         <PieHooks
           data={data}
-          width={200}
-          height={200}
+          width={220}
+          height={220}
           innerRadius={60}
           outerRadius={100}
         />
@@ -76,3 +51,10 @@ export default function PieChart() {
     </div>
   );
 }
+
+const mapStateToProps = state => ({
+  // isLoggedIn: False//state.userReducer.isLoggedIn,
+  user: state.userReducer.user,
+});
+
+export default connect(mapStateToProps)(PieChart);

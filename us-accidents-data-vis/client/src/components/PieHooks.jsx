@@ -1,5 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import * as d3 from "d3";
+import { transition } from 'd3-transition';
+
 
 const Pie = props => {
   const ref = useRef(null);
@@ -34,7 +36,9 @@ const Pie = props => {
       path
         .attr("class", "arc")
         .attr("d", createArc)
+        .transition().duration(1000)
         .attr("fill", (d, i) => colors(i));
+
 
       const text = groupWithUpdate
         .append("text")

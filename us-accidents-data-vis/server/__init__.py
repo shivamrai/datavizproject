@@ -2,6 +2,7 @@ import os
 
 from flask import Flask
 
+from data.US_states_pop import US_states_population
 
 def create_app(test_config=None):
     # create and configure the app
@@ -28,6 +29,10 @@ def create_app(test_config=None):
     @app.route('/hello')
     def hello():
         return 'Hello, World!'
+
+    @app.route('/getUSpopulation')
+    def getUSstatespopulation():
+        return US_states_population
 
     return app
 
