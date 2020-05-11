@@ -1,5 +1,5 @@
 const INITIAL_STATE = {
-    user: 'USA',
+    user: 'CA',
 password: '',
 isLoggedIn: false,
 loadingState: 'init',

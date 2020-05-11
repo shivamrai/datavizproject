@@ -14,9 +14,9 @@ const USAState = (props) => {
   const dispatch = useDispatch();
 
 
-  if(stroke != "#F0FF00" && props.state == user)
-    setStroke("#F0FF00");
-  else if(stroke == "#F0FF00" && props.state != user)
+  if(stroke != "#9ACD32" && props.state == user)
+    setStroke("#9ACD32");
+  else if(stroke == "#9ACD32" && props.state != user)
     setStroke(props.fill);
 
 

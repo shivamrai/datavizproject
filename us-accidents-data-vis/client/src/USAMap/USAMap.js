@@ -20,10 +20,10 @@ from '../redux/actions/userActions';
       let countArr = {};
     for(let state of Object.keys(data)){
         if(state in stateCountData)
-            {data[state].display = data[state].name + "\n Count: " + stateCountData[state] + " \nCode: " + data[state].abbreviation ;
+            {data[state].display = data[state].name + "\nNo. of Accidents: " + stateCountData[state] + " \nCode: " + data[state].abbreviation ;
             countArr[stateCountData[state]] = state;}
         else
-        data[state].display = data[state].name + " Count: " + "N/A";
+        data[state].display = data[state].name + "\nNo. of Accidents: " + "N/A";
         
     }
     // countArr = Object.keys(countArr).sort();
