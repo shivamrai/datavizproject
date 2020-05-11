@@ -103,7 +103,7 @@ function BarChart ({user}){
       .nice();
       return(
         <div>
-           <div ><Typography variant ="h6">Top 10 cities in {stateName[user]} with most number of accidents.</Typography></div>
+           <div ><Typography variant ="h6">Top 10 cities in <b>{stateName[user]}</b> with most number of accidents.</Typography></div>
         <svg width={width + margin.left + margin.right} height={height + margin.top + margin.bottom}>
           <g transform={`translate(${margin.left}, ${margin.top})`}>
             <XYAxis {...{ xScale, yScale, height, ticks, t }} />

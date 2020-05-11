@@ -38,6 +38,7 @@ function PieChart({user}) {
       <div>
         A Pie chart indicating division of drivers in all accidents for state <b>{stateName[user]}</b>
       </div>
+      <div><br /></div>
       <div>
         <PieHooks
           data={data}

@@ -68,10 +68,10 @@ const useStyles = makeStyles((theme) => ({
     width: theme.spacing(100),
   },
   orangeDiv:{
-    color: "orange",
+    color: "#FF7F0E",
   },
   blueDiv:{
-    color :"blue",
+    color :"#1F77B4",
   },
 }));
 
@@ -109,16 +109,17 @@ return (
         <Grid container spacing={2}>
           <Grid item xs>
             <Paper className={classes.paperHeighted}>
-              <div>A Time Series line plot for different weather conditions, time is divided in Quarters</div> 
+              <div>A Time Series line plot for different weather conditions in <b>{stateName[user]}</b> state, time is divided in Quarters</div> 
               <ResponsiveLine />
             </Paper>
           </Grid>
           <Grid item xs>
           <Paper className={classes.paperWidthLow}>
               <PieChart />
+              <div><br /></div>
               <div>Legend:</div>
-              <div className={classes.blueDiv}>Male</div>
-              <div className={classes.orangeDiv}>Female</div>
+              <div className={classes.orangeDiv}>Male</div>
+              <div className={classes.blueDiv}>Female</div>
           </Paper>
          </Grid>
         </Grid>

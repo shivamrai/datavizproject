@@ -6,6 +6,7 @@ import { Resizable } from 're-resizable';
 import words from './wordData';
 import {connect} from 'react-redux';
 import axios from "axios";
+import stateName from "../data/stateCodes";
 
 const resizeStyle = {
   display: 'flex',
@@ -32,7 +33,7 @@ function Wordcloud({ user }) {
 
   return (
     <div>
-      <div>A Word Cloud of top accident causes by count.</div>
+      <div>A Word Cloud of top accident causes in <b>{stateName[user]}</b> by count.</div>
       <Resizable
         defaultSize={{
           width: 380,
