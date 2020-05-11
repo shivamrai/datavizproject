@@ -32,10 +32,11 @@ function Wordcloud({ user }) {
 
   return (
     <div>
+      <div>A Word Cloud of top accident causes by count.</div>
       <Resizable
         defaultSize={{
           width: 380,
-          height: 415,
+          height: 370,
         }}
         style={resizeStyle}>
         <div style={{ width: '100%', height: '100%' }}>

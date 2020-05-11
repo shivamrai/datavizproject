@@ -61,7 +61,7 @@ console.log(rows);
     <Grid container spacing = {1} >
       <Grid item xs>
         <br />
-        <div className="col-md-6">
+        <div>
           <Select options={Countries} onChange = {(e) => onDropDownChange(e)}/>
         </div>
       </Grid>

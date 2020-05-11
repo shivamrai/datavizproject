@@ -9,6 +9,7 @@ import { transition } from 'd3-transition';
 import {connect} from 'react-redux';
 import axios from 'axios';
 import stateName from "../data/stateCodes";
+import { Typography } from '@material-ui/core';
 
 // const initial_data = [ 
 //   { name: 'Sun', value: 100 },
@@ -102,7 +103,7 @@ function BarChart ({user}){
       .nice();
       return(
         <div>
-           <span className="label">{stateName[user]}</span>
+           <div ><Typography variant ="h6">Top 10 cities in {stateName[user]} with most number of accidents.</Typography></div>
         <svg width={width + margin.left + margin.right} height={height + margin.top + margin.bottom}>
           <g transform={`translate(${margin.left}, ${margin.top})`}>
             <XYAxis {...{ xScale, yScale, height, ticks, t }} />

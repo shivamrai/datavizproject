@@ -51,6 +51,14 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.text.secondary,
     width: theme.spacing(50),
   },
+  paperUSAMap: {
+    padding: theme.spacing(1),
+    alignContent: 'left',
+    alignItems: 'left',
+    textAlign: 'center',
+    color: theme.palette.text.secondary,
+    width: theme.spacing(50),
+  },
   paperBarChart: {
     padding: theme.spacing(1),
     alignContent: 'left',
@@ -58,6 +66,12 @@ const useStyles = makeStyles((theme) => ({
     textAlign: 'center',
     color: theme.palette.text.secondary,
     width: theme.spacing(100),
+  },
+  orangeDiv:{
+    color: "orange",
+  },
+  blueDiv:{
+    color :"blue",
   },
 }));
 
@@ -76,10 +90,10 @@ return (
     <div className={classes.root}>
       <Grid container spacing={3}>
         <Grid item xs>
-          <State1Info />
+            <State1Info />
         </Grid>
         <Grid item xs>
-<Paper className={classes.paper}><div><br /></div><div><Usa /></div><div><Typography>Currently selected state: {stateName[user]}</Typography></div></Paper>
+          <Paper className={classes.paper}><div><br /></div><div><Usa /></div><div><Typography variant="h8">Currently selected state: {stateName[user]}</Typography></div><div></div></Paper>
         </Grid>
         <Grid item xs>
           <State2Info />
@@ -92,15 +106,19 @@ return (
         <Grid item xs>
           <Paper className={classes.paperWordCloud}><WordCloud /></Paper>
         </Grid>
-        <Grid container spacing={3}>
+        <Grid container spacing={2}>
           <Grid item xs>
             <Paper className={classes.paperHeighted}>
+              <div>A Time Series line plot for different weather conditions, time is divided in Quarters</div> 
               <ResponsiveLine />
             </Paper>
           </Grid>
           <Grid item xs>
           <Paper className={classes.paperWidthLow}>
               <PieChart />
+              <div>Legend:</div>
+              <div className={classes.blueDiv}>Male</div>
+              <div className={classes.orangeDiv}>Female</div>
           </Paper>
          </Grid>
         </Grid>

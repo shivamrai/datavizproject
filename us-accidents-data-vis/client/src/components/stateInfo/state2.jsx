@@ -10,12 +10,14 @@ import Paper from "@material-ui/core/Paper";
 import {connect} from 'react-redux';
 import axios from 'axios';
 import stateName from "../../data/stateCodes";
+import Grid from "@material-ui/core/Grid";
+import { Typography } from "@material-ui/core";
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme)=>({
   table: {
     minWidth: 300
   }
-});
+}));
 
 function createData(name, value) {
   return { name, value};
@@ -47,11 +49,22 @@ function State2({ user }) {
 }
 
   return (
-    
-    <TableContainer component={Paper}>
-      <span className="label">{stateName[user]}</span>
+    <Grid>
+      {/* <Grid item xs>
+        <Paper></Paper>
+      </Grid> */}
+      <Grid item xs>
+      <TableContainer component={Paper}>
       <Table className={classes.table} aria-label="simple table">
         <TableHead>
+          <TableRow>
+            <TableCell>
+              <Typography variant="h6">State Information :</Typography>
+            </TableCell>
+            <TableCell>
+              <Typography variant="h6">{stateName[user]}</Typography>
+            </TableCell>
+          </TableRow>
           <TableRow>
           <TableCell>Attribute</TableCell>
           <TableCell align="right">Value&nbsp;</TableCell>
@@ -69,6 +82,9 @@ function State2({ user }) {
         </TableBody>
       </Table>
     </TableContainer>
+      </Grid>
+    </Grid>
+    
   );
 }
 
