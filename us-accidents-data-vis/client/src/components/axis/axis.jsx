@@ -26,7 +26,7 @@ function updateAxis(ref, props) {
 
     if (orient === "left") {
       const axis = axisLeft(scale).ticks(ticks); 
-      selectAll(`.${orient}`).transition(t).call(axis)
+      selectAll(`.${orient}`).transition(t).call(axis).style("font-size","8px")
     }
 }
 export default function Axis (props) {
